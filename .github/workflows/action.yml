@@ -18,7 +18,7 @@ on:
 jobs:
   LinkChecker:
     name: Link Checker
-    if: github.event.repository.fork == false
+    #if: github.event.repository.fork == false
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -32,7 +32,7 @@ jobs:
         uses: lycheeverse/lychee-action@v1.9.3
         with:
           # Check all markdown files in repo
-          args: -vvv --no-progress --max-redirects 30 --accept 200,429 --base . './**/*.md'
+          args: -vvv --no-progress --base . --max-redirects 30 --accept 200,429 './**/*.md'
           fail: true
 
       # To avoid automated spam, try to find an existing open issue before opening a new one
