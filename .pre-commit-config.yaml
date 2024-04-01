@@ -6,8 +6,6 @@ ci:
   autoupdate_schedule: weekly
   submodules: false
 
-default_stages: [commit, merge-commit, push, manual, pre-push]
-
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
