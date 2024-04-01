@@ -1,0 +1,21 @@
+ci:
+  autofix_commit_msg: '[pre-commit.ci] Auto-fixes from pre-commit.ci hooks'
+  autofix_prs: true
+  autoupdate_branch: ''
+  autoupdate_commit_msg: '[pre-commit.ci] Pre-commit autoupdate'
+  autoupdate_schedule: weekly
+  submodules: false
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+    - id: check-added-large-files
+      args: ['--maxkb=10000']
+    - id: check-merge-conflict
+    - id: detect-private-key
+    - id: end-of-file-fixer
+      exclude: '^(Media/.*'
+    - id: forbid-new-submodules
+    - id: trailing-whitespace
+      exclude: '^(Media/.*)'
