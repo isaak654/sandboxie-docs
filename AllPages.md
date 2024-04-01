@@ -1,6 +1,6 @@
 # All Pages (test)
 
-### A 
+### A
 
 [Advanced Topics](AdvancedTopics.md)
 
