@@ -15,7 +15,7 @@ repos:
     - id: check-merge-conflict
     - id: detect-private-key
     - id: end-of-file-fixer
-      exclude: '^(Media/.*'
+      exclude: '^(Media/.*)'
     - id: forbid-new-submodules
     - id: trailing-whitespace
       exclude: '^(Media/.*)'
