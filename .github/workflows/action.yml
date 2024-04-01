@@ -18,6 +18,7 @@ on:
 jobs:
   LinkChecker:
     name: Link Checker
+    if: github.event.repository.fork == false
     runs-on: ubuntu-latest
     permissions:
       contents: read
