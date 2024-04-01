@@ -61,14 +61,18 @@ jobs:
     - uses: actions/setup-python@v5
       with:
         python-version: "3.10"
+
     - name: Install pre-commit
       run: python -m pip install --upgrade pre-commit
+
     - name: Run pre-commit
       run: pre-commit run --all-files || (exit 0)
-      if: ${{ !failure() && !cancelled() }}
+
+      if: ${{ !cancelled() }}
     - run: |
         git config --local user.name "pre-commit-ci[bot]"
         git config --local user.email "66853113+pre-commit-ci[bot]@users.noreply.github.com"
         git clean -f -x
-        git commit -m "[pre-commit.ci] Pre-commit autoupdate" -a
+        git diff-index --quiet --cached HEAD || git commit -m "[pre-commit.ci] Pre-commit autoupdate" -a
+        git pull --rebase=merges
         git push
