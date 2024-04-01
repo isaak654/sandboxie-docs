@@ -66,7 +66,7 @@ jobs:
     - name: Run pre-commit
       run: pre-commit run --all-files || (exit 0)
     - run: |
-        git config --local user.name "github-actions[bot]"
-        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git commit -m "Run pre-commit" -a
+        git config --local user.name "pre-commit-ci[bot]"
+        git config --local user.email "66853113+pre-commit-ci[bot]@users.noreply.github.com"
+        git commit -m "[pre-commit.ci] Pre-commit autoupdate" -a
         git push
