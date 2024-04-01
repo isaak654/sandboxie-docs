@@ -1,4 +1,4 @@
-# All Pages (Test)
+# All Pages
 
 ### A
 
