@@ -13,7 +13,7 @@ One or more sub-menus appear for each sandbox defined. The default configuration
 *   The _Run Sandboxed_ sub-sub-menu is used to start programs under the supervision of Sandboxie:
 
 
-*   The _Web Browser_ command starts the system (default) Web browser.  
+*   The _Web Browser_ command starts the system (default) Web browser.
     (Note: If the wrong program starts, see [Frequently Asked Questions](FrequentlyAskedQuestions.md#why-does-the-wrong-program-start-when-i-run-my-default-web-browser-sandboxed) to fix this.)
 
 
@@ -61,7 +61,7 @@ The _Set Container Folder_ command selects the container (or master, or parent) 
 
 The special variable **%SANDBOX%** is replaced by the name of the sandbox.
 
-The special variable **%USER%** is replaced by the name of whichever user account (or logon) is using that sandbox. Note that a sandbox created in one user account is visible and can be used by other accounts in the system.  
+The special variable **%USER%** is replaced by the name of whichever user account (or logon) is using that sandbox. Note that a sandbox created in one user account is visible and can be used by other accounts in the system.
 However, if the container folder includes the **%USER%** special variable, then the user accounts don't actually share the same sandbox. Each account has a separate instance of the sandbox.
 
 Related [Sandboxie Ini](SandboxieIni.md) setting: [FileRootPath](FileRootPath.md).
