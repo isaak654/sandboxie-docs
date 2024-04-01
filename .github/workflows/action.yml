@@ -1,4 +1,4 @@
-name: Check broken formatting
+name: Check broken link
 on:
   schedule:
     - cron: '0 8 * * *'
@@ -53,12 +53,3 @@ jobs:
           content-filepath: ./lychee/out.md
           issue-number: ${{ steps.search-issue.outputs.issue_number }}
           labels: automated-report
-
-  pre-commit:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-python@v5
-      with:
-        python-version: "3.10"
-    - uses: pre-commit/action@v3.0.1
