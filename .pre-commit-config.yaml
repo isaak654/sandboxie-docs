@@ -2,7 +2,7 @@ ci:
   autofix_commit_msg: '[pre-commit.ci] Auto-fixes from pre-commit.ci hooks'
   autofix_prs: true
   autoupdate_branch: ''
-  autoupdate_commit_msg: '[pre-commit.ci] Pre-commit autoupdate'
+  autoupdate_commit_msg: '[pre-commit.ci] Pre-commit fixes'
   autoupdate_schedule: weekly
   submodules: false
 
