@@ -74,6 +74,6 @@ jobs:
         git config --local user.name "pre-commit-ci[bot]"
         git config --local user.email "66853113+pre-commit-ci[bot]@users.noreply.github.com"
         git clean -f -x
-        git diff-index --quiet --cached HEAD || git commit -m "[pre-commit.ci] Pre-commit fixes" -a
+        git diff-index --quiet --cached HEAD || git commit -m "[pre-commit.ci] pre-commit auto-fixes" -a
         git pull --rebase=merges
         git push
