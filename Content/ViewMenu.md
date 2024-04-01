@@ -15,4 +15,4 @@ The Files and Folders selects [Files And Folders View](FilesAndFoldersView.md), 
 
 The Context Menu commands displays the context menu associated with the item that is highlighted (selected).
 The context menu can also be displayed by clicking the right mouse button on an item.
-An item is a sandbox, a program, a file or a folder. Not all items appear in all views.
+An item is a sandbox, a program, a file or a folder. Not all items appear in all views. 

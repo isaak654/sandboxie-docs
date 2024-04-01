@@ -267,3 +267,4 @@ In Windows 8/8.1, point to (but do not click) the lower-right or top-right corne
 If using Windows 10/11, ensure that your default Web Browser for Windows is set correctly (click on the Start menu, type "default apps" and Choose your default apps).
 
 **Back to [Table of Contents](#problems)**
+
