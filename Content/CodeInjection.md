@@ -1,9 +1,9 @@
-# Code Injection
+# Code Injection 
 
 Sandboxie employs a particularly low level approach of injecting its code into processes during creation.
 
 ##### Trigger
-The driver registers a PsSetCreateProcessNotifyRoutine callback and when this is triggered inspects if the process should be sandboxed, when it decides so it blocks and requests the SbieSvc service to inject a loader into the process image. Alternatively a suspended process can be created and the driver triggered to put it into a sandbox by using API_START_PROCESS and resuming the process once the driver has finished.
+The driver registers a PsSetCreateProcessNotifyRoutine callback and when this is triggered inspects if the process should be sandboxed, when it decides so it blocks and requests the SbieSvc service to inject a loader into the process image. Alternatively a suspended process can be created and the driver triggered to put it into a sandbox by using API_START_PROCESS and resuming the process once the driver has finished. 
 
 The injection mechanism itself can be adapted to be utilized without the driver. As of version 5.44 the loader code has been moved from the SbieSvc.exe to SbieDll.dll.
 
@@ -16,7 +16,7 @@ The injection is done calling `_FX ULONG SbieDll_InjectLow(HANDLE hProcess, BOOL
 
 * Starts with preparing a data block `lowdata` of type `SBIELOW_DATA`, and filling in various values like is_wow64, bHostInject and others...
 
-* Than it uses `SbieDll_InjectLow_CopyCode` to allocate `sizeof(shell_code) + sizeof(SBIELOW_J_TABLE) + 0x400` bytes of Memory in the target process and write the shell code to it.
+* Than it uses `SbieDll_InjectLow_CopyCode` to allocate `sizeof(shell_code) + sizeof(SBIELOW_J_TABLE) + 0x400` bytes of Memory in the target process and write the shell code to it. 
 This function also, in an unrelated last step, copies 48 bytes from the begin of `ntdll!LdrInitializeThunk` into `lowdata.LdrInitializeThunk_tramp`.
 
 * Than if `dup_drv_handle` was set `SbieDll_InjectLow_SendHandle` is used to open a handle to the driver and duplicate it into the process, saving its value to `lowdata.api_device_handle`.
@@ -26,7 +26,7 @@ This function also, in an unrelated last step, copies 48 bytes from the begin of
 * Than the actual trampoline is build by `SbieDll_InjectLow_BuildTramp` in `lowdata.LdrInitializeThunk_tramp`.
 
 * Now the function uses `SbieDll_InjectLow_CopySyscalls` to allocate and fill in another memory segment `syscall_data`.
-This block is made up of 2 sections one containing information from the driver that are used to hook all system calls,
+This block is made up of 2 sections one containing information from the driver that are used to hook all system calls, 
 this is optionally done by the shell code when `bHostInject == 0`, that is followed by the `SBIELOW_EXTRA_DATA` that points to values stored behind it in the memory block.
 The data stored there a couple of offsets, as well as the full paths to the SbieDll.dll that is to be injected later on.
 
@@ -36,7 +36,7 @@ The data stored there a couple of offsets, as well as the full paths to the Sbie
 
 Now the process can be resumed and the injected code will do its thing.
 
-An important note to make here is that this function does the same for native 64 bit and wow64 emulated 32 bit processes,
+An important note to make here is that this function does the same for native 64 bit and wow64 emulated 32 bit processes, 
 in fact, on a 64-bit system the injected shell code is always 64 bit. Only much later in the initialization of the process running under wow64 it switches to 32-bit.
 
 ## Shell Code (LowLevel.dll) operation
@@ -55,9 +55,9 @@ At this point the top portion of the `data->syscall_data` before the `SBIELOW_EX
 The function than finds the addresses of `LdrLoadDll`, `LdrGetProcedureAddress`, `NtRaiseHardError` and `RtlFindActivationContextSectionString` using a custom `FindDllExport` lookup function by parsing through the previously selected ntdll image, these addresses are stored into the `INJECT_DATA` region, then a couple values from the `SBIELOW_EXTRA_DATA` are also copied into that region, containing paths to the SbieDll.dll (both 32 and 64 bit paths), as well as the name of kernel32.dll.
 
 On 64-bit systems the function distinguishes between the native and the wow64 execution, in the latter case branching off to `InitInjectWow64`.
-In the native case it continues with hooking the `RtlFindActivationContextSectionString` function in the ntdll.dll.
-* An original copy of the functions begin is first saved to the `INJECT_DATA` structure
-* The address of the structure is written into the detour function which is implemented in assembler.
+In the native case it continues with hooking the `RtlFindActivationContextSectionString` function in the ntdll.dll. 
+* An original copy of the functions begin is first saved to the `INJECT_DATA` structure 
+* The address of the structure is written into the detour function which is implemented in assembler. 
 * Than the `RtlFindActivationContextSectionString` begin is overwritten with a jump instruction to the detour function.
 * Last a pointer to the `SBIELOW_DATA` region is saved into the very top of the `INJECT_DATA` region, and the function exits.
 
@@ -66,7 +66,7 @@ In the wow64 case `InitInjectWow64` sets up the `RtlFindActivationContextSection
 
 ##### RtlFindActivationContextSectionString Detour
 
-In contrary to the above operations which are always executed natively, the `RtlFindActivationContextSectionString` Detour function is executed in the mode matching the bit-ness of the started process.
+In contrary to the above operations which are always executed natively, the `RtlFindActivationContextSectionString` Detour function is executed in the mode matching the bit-ness of the started process. 
 * The function first restores the original `RtlFindActivationContextSectionString` begin.
 * Than it loads the kernel32.dll followed by loading the SbieDll.dll and retrieving the address of Ordinal 1.
 * Than it saves value of the first argument to the `INJECT_DATA` structure and replaces it with a pointer to said structure
@@ -90,3 +90,4 @@ Those are implemented in assembler, they pass a pointer to the return address lo
 
 
 This function first restores the original entry point function from `SbieDll!Ldr_Inject_SaveBytes`  and changes its caller?s return address to point to the begin of the entry point. This way once the caller returns the real entry point will be invoked. Then the function checks if `bHostInject` is set to `0` in which case it first calls `SbieDll!Ldr_LoadInjectDlls` and then `SbieDll!Dll_InitExeEntry` which performs the last initialization steps. If `bHostInject != 0` it calls only `SbieDll!Ldr_LoadInjectDlls` this function checks the [Sandboxie.ini](SandboxieIni.md) for the [InjectDll](InjectDll.md) or the [InjectDll64](InjectDll64.md) respectively, and loads the additional dll?s if any are configured.
+

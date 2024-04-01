@@ -96,3 +96,4 @@ Some more features (**) are available to participants of the [Sandboxie-Insider]
  - Support ARM64 natively
  - Support emulated x86
  - Support emulated x64 (ARM64EC)
+
