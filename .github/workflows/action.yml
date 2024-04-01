@@ -1,4 +1,4 @@
-name: Check broken links
+name: Check broken formatting
 on:
   schedule:
     - cron: '0 8 * * *'
