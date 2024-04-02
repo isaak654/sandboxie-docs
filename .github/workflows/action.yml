@@ -80,4 +80,5 @@ jobs:
         git config --local user.name "pre-commit-ci[bot]"
         git config --local user.email "66853113+pre-commit-ci[bot]@users.noreply.github.com"
         git add .
+        git pull --rebase=merges
         git commit -m "[pre-commit.ci] pre-commit update" -a && git push origin HEAD:refs/heads/main || true
