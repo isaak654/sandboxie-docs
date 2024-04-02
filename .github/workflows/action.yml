@@ -18,7 +18,7 @@ on:
 jobs:
   LinkChecker:
     name: Link Checker
-    #if: github.event.repository.fork == false
+    if: ${{ github.repository_owner == 'sandboxie-plus' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -29,6 +29,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Lychee Broken Link Checker
+        id: lychee
         uses: lycheeverse/lychee-action@v1.9.3
         with:
           # Check all markdown files in repo
