@@ -69,7 +69,7 @@ jobs:
     - name: Run pre-commit
       run: pre-commit run --all-files
 
-      if: ${{ !cancelled() || github.event_name != 'pull_request' }}
+      if: ${{ !cancelled() && github.ref == 'refs/heads/main' }}
     - run: |
         git config --local user.name "pre-commit-ci[bot]"
         git config --local user.email "66853113+pre-commit-ci[bot]@users.noreply.github.com"
