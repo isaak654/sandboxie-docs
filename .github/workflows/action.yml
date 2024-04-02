@@ -69,7 +69,6 @@ jobs:
     - name: Run pre-commit
       run: pre-commit run --all-files
 
-    - name: Commit changes
       if: ${{ !cancelled() && git diff --quiet --exit-code != 0 }}
     - run: |
         git config --local user.name "pre-commit-ci[bot]"
