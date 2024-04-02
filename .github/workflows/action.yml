@@ -69,9 +69,10 @@ jobs:
     - name: Run pre-commit
       run: pre-commit run --all-files
 
-      if: ${{ always() && github.ref == 'refs/heads/main' }}
+      if: ${{ github.ref == 'refs/heads/main' }}
     - run: |
         git config --local user.name "pre-commit-ci[bot]"
         git config --local user.email "66853113+pre-commit-ci[bot]@users.noreply.github.com"
+        git diff --quiet --exit-code && exit
         git commit -m "[pre-commit.ci] pre-commit update" -a
-        git push || true
+        git push
