@@ -67,7 +67,7 @@ jobs:
 
     - name: Install pre-commit
       shell: bash
-      run: pip install --upgrade pip && python -m pip install --upgrade pre-commit
+      run: pip install --upgrade pip && pip install --upgrade pre-commit
 
     - name: Run pre-commit
       id: check
@@ -83,3 +83,4 @@ jobs:
         git config --local user.email "66853113+pre-commit-ci[bot]@users.noreply.github.com"
         git commit -m "[pre-commit.ci] pre-commit update" -a
         git pull --rebase --autostash && git push || true
+        pre-commit clean
