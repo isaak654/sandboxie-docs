@@ -2,7 +2,7 @@
 
 ### Applications" Settings Group
 
-[Sandboxie Control](SandboxieControl.md) > [Sandbox Settings](SandboxSettings.md) > Applications.
+[Sandboxie Control](SandboxieControlnn.md) > [Sandbox Settings](SandboxSettings.md) > Applications. 
 
 ![](../Media/ApplicationsSettings.png)
 
