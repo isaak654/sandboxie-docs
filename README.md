@@ -14,7 +14,7 @@ A GitHub Pages site based on this content is also available: [https://sandboxie-
 
 ## Help Topics
 
-* [Getting Started with Sandboxie](Content/GettingStarted.md) 
+* [Getting Started with Sandboxie](Content/GettingStarted.md)
 * [General Usage Tips](Content/UsageTips.md)
 * [Usage Manual for Sandboxie Control](Content/SandboxieControl.md)
 * [Known Conflicts](Content/KnownConflicts.md)
