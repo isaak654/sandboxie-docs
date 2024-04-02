@@ -74,7 +74,7 @@ jobs:
         git diff --exit-code
         echo "deploy2=$?" >> $GITHUB_OUTPUT
       
-      if: steps.check2.outputs.deploy2 == '0'
+      if: steps.check2.outputs.deploy2 == '1'
     - run: |
         git config --local user.name "pre-commit-ci[bot]"
         git config --local user.email "66853113+pre-commit-ci[bot]@users.noreply.github.com"        
