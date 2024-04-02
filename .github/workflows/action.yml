@@ -80,5 +80,4 @@ jobs:
         git config --local user.name "pre-commit-ci[bot]"
         git config --local user.email "66853113+pre-commit-ci[bot]@users.noreply.github.com"
         git commit -m "[pre-commit.ci] pre-commit update" -a
-        git pull origin main
-        git push origin HEAD:refs/heads/main || true
+        git pull --rebase --autostash && git push || true
