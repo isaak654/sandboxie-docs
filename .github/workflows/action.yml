@@ -67,10 +67,15 @@ jobs:
       run: pip install --upgrade pip && python -m pip install --upgrade pre-commit
 
     - name: Run pre-commit
-      run: pre-commit run --all-files
+      id: check
+      run: |
+        pre-commit run --all-files
+        git diff --exit-code
+        echo "deploy=$?" >> $GITHUB_OUTPUT
 
-      if: ${{ ! cancelled() }}
-    - run: |
+    - name: Commit changes
+      if: steps.check.outputs.deploy != '0'
+      run: |
         git config --local user.name "pre-commit-ci[bot]"
         git config --local user.email "66853113+pre-commit-ci[bot]@users.noreply.github.com"
         git commit -m "[pre-commit.ci] pre-commit update" -a && git push || true
