@@ -18,7 +18,7 @@ on:
 jobs:
   LinkChecker:
     name: Link Checker
-    if: ${{ github.repository_owner == 'sandboxie-plus' }}
+    #if: ${{ github.repository_owner == 'sandboxie-plus' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
