@@ -72,10 +72,9 @@ jobs:
       shell: bash
       run: |
         pre-commit run --all-files
-        git diff --exit-code
-        echo "deploy=$?" >> $GITHUB_OUTPUT
 
     - name: Commit changes
+      if: ${{ !cancelled() && failure() }}
       shell: bash
       run: |
         git config --local user.name "pre-commit-ci[bot]"
